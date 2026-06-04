@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products | Wholesale ERP</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-mark">ERP</span>
+        <span>Wholesale</span>
+      </div>
+      <nav class="side-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a class="active" href="products.html">Products</a>
+        <a href="customers.html">Customers</a>
+        <a href="orders.html">Orders</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <button class="menu-button" type="button" onclick="toggleSidebar()">Menu</button>
+        <div>
+          <h1>Products</h1>
+          <p>Inventory management</p>
+        </div>
+        <button class="btn btn-secondary" type="button" onclick="logoutUser()">Logout</button>
+      </header>
+
+      <div id="alertBox" class="alert" role="alert"></div>
+
+      <section class="panel">
+        <h2>Add Product</h2>
+        <form id="productForm" class="grid-form">
+          <input id="productId" name="id" type="hidden">
+          <div>
+            <label for="productName">Name</label>
+            <input id="productName" name="name" type="text" required>
+          </div>
+          <div>
+            <label for="productCategory">Category</label>
+            <input id="productCategory" name="category" type="text" placeholder="jacket, shirt, jeans" required>
+          </div>
+          <div>
+            <label for="productPrice">Price</label>
+            <input id="productPrice" name="price" type="number" step="0.01" min="0.01" required>
+          </div>
+          <div>
+            <label for="productStock">Stock Quantity</label>
+            <input id="productStock" name="stock_quantity" type="number" min="0" required>
+          </div>
+          <button id="productSubmitButton" class="btn btn-primary" type="submit">Add Product</button>
+          <button id="productCancelButton" class="btn btn-secondary" type="button" onclick="resetProductForm()" hidden>
+            Cancel Edit
+          </button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <h2>Product List</h2>
+          <button class="btn btn-light" type="button" onclick="loadProducts()">Refresh</button>
+        </div>
+        <div id="loadingSpinner" class="spinner" aria-label="Loading"></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock Quantity</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+  <script>
+    protectPage();
+    document.getElementById("productForm").addEventListener("submit", createProduct);
+    loadProducts();
+  </script>
+</body>
+</html>

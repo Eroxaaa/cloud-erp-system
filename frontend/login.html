@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In | Fashion Wholesale ERP</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="auth-page">
+  <main class="auth-shell">
+    <section class="auth-story" aria-label="Fashion wholesale operations preview">
+      <a class="brand-lockup auth-brand" href="index.html" aria-label="Back to home">
+        <span class="brand-mark fashion-mark">FW</span>
+        <span>
+          <strong>Fashion Wholesale ERP</strong>
+          <small>Inventory, buyers, orders</small>
+        </span>
+      </a>
+
+      <div class="atelier-panel">
+        <div class="collection-strip">
+          <span class="swatch navy"></span>
+          <span class="swatch teal"></span>
+          <span class="swatch clay"></span>
+          <span class="swatch pearl"></span>
+        </div>
+        <div class="atelier-rack">
+          <span class="coat"></span>
+          <span class="shirt"></span>
+          <span class="denim"></span>
+        </div>
+        <div class="atelier-metrics">
+          <div>
+            <small>Reserved stock</small>
+            <strong>1,284</strong>
+          </div>
+          <div>
+            <small>Open orders</small>
+            <strong>76</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-story-copy">
+        <span class="eyebrow">Wholesale operations suite</span>
+        <h1>Sign in to manage the next dispatch cycle.</h1>
+        <p>Review apparel stock, customer accounts, and order movement from one secure workspace built for fashion distribution teams.</p>
+      </div>
+    </section>
+
+    <section class="auth-card">
+      <div class="auth-card-header">
+        <span class="eyebrow">Secure access</span>
+        <h2>Welcome back</h2>
+        <p>Enter your workspace credentials to continue.</p>
+      </div>
+
+      <div id="alertBox" class="alert" role="alert"></div>
+
+      <form id="loginForm" class="stack-form auth-form">
+        <div>
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username" required>
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required>
+        </div>
+
+        <div class="auth-options">
+          <label class="remember-control" for="rememberMe">
+            <input id="rememberMe" name="rememberMe" type="checkbox">
+            <span>Remember me</span>
+          </label>
+          <a href="#" onclick="showAlert('Password recovery is managed by your system administrator.', 'success'); return false;">
+            Forgot password?
+          </a>
+        </div>
+
+        <button id="loginButton" class="btn btn-primary auth-submit" type="submit">
+          <span class="button-label">Sign in</span>
+          <span class="button-spinner" aria-hidden="true"></span>
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+  <script>
+    const rememberedUsername = localStorage.getItem("erpRememberedUsername");
+    if (rememberedUsername) {
+      document.getElementById("username").value = rememberedUsername;
+      document.getElementById("rememberMe").checked = true;
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", loginUser);
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customers | Wholesale ERP</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-mark">ERP</span>
+        <span>Wholesale</span>
+      </div>
+      <nav class="side-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="products.html">Products</a>
+        <a class="active" href="customers.html">Customers</a>
+        <a href="orders.html">Orders</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <button class="menu-button" type="button" onclick="toggleSidebar()">Menu</button>
+        <div>
+          <h1>Customers</h1>
+          <p>CRM contacts</p>
+        </div>
+        <button class="btn btn-secondary" type="button" onclick="logoutUser()">Logout</button>
+      </header>
+
+      <div id="alertBox" class="alert" role="alert"></div>
+
+      <section class="panel">
+        <h2>Add Customer</h2>
+        <form id="customerForm" class="grid-form">
+          <div>
+            <label for="customerName">Name</label>
+            <input id="customerName" name="name" type="text" required>
+          </div>
+          <div>
+            <label for="customerEmail">Email</label>
+            <input id="customerEmail" name="email" type="email" required>
+          </div>
+          <div>
+            <label for="customerPhone">Phone</label>
+            <input id="customerPhone" name="phone" type="tel" required>
+          </div>
+          <button class="btn btn-primary" type="submit">Add Customer</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <h2>Customer List</h2>
+          <button class="btn btn-light" type="button" onclick="loadCustomers()">Refresh</button>
+        </div>
+        <div id="loadingSpinner" class="spinner" aria-label="Loading"></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="customersTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+  <script>
+    protectPage();
+    document.getElementById("customerForm").addEventListener("submit", createCustomer);
+    loadCustomers();
+  </script>
+</body>
+</html>
